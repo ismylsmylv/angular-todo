@@ -1,4 +1,18 @@
 <div class="container">
+  <!-- input -->
+  <form>
+    <div>
+      <label for="input">Task</label>
+      <input type="text" id="input" placeholder="enter task" name="taskText" [(ngModel)]="newTaskText">
+    </div>
+    <button type="submit" (click)="$event.preventDefault(); addTask()">
+      add
+    </button>
+
+  </form>
+
+
+  <!-- list -->
   <div *ngIf="items.length==0; else showItems">
 
 
@@ -9,10 +23,11 @@
 
   <ng-template #showItems>
     <ul *ngIf="items.length !=0" class="todo-list">
-      <li *ngFor="let item of items">
+      <li *ngFor="let item of items ; index as ii">
         <div class="form-check">
           <label class="form-check-label">
-            <input type="checkbox" name="" id=""> {{item.todoText }}
+            <input type="checkbox" [checked]='item.isComplete' [attr.data-index]="ii" name="" id=""
+              (click)="toggleItem(item)"> {{item.todoText }}
           </label>
         </div>
       </li>
