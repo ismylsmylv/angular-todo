@@ -1,11 +1,21 @@
 <div class="container">
-  <ul class="todo-list">
-    <li *ngFor="let item of items">
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="checkbox" name="" id=""> {{item.todoText }}
-        </label>
-      </div>
-    </li>
-  </ul>
+  <div *ngIf="items.length==0; else showItems">
+
+
+    <div *ngIf="items.length==0">
+      <h1>Nothing to show here</h1>
+    </div>
+  </div>
+
+  <ng-template #showItems>
+    <ul *ngIf="items.length !=0" class="todo-list">
+      <li *ngFor="let item of items">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" name="" id=""> {{item.todoText }}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
 </div>

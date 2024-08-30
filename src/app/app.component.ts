@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  items = [
+  items: TodoItem[] = [
     new TodoItem('To learn Angular'),
     new TodoItem('Have a coffee', true),
     new TodoItem('Browse Linkedin'),
