@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container m-4">
   <!-- input -->
-  <form>
+  <label for="input">{{items.length}} Tasks remaining</label>
+  <form class="input-group">
     <div>
-      <label for="input">Task</label>
-      <input type="text" id="input" placeholder="enter task" name="taskText" [(ngModel)]="newTaskText">
+      <input type="text" id="input" placeholder="enter task" name="taskText" class="form-control"
+        [(ngModel)]="newTaskText">
     </div>
-    <button type="submit" (click)="$event.preventDefault(); addTask()">
+    <button type="submit" (click)="$event.preventDefault(); addTask()" class="btn btn-primary">
       add
     </button>
 
@@ -17,7 +18,7 @@
 
 
     <div *ngIf="items.length==0">
-      <h1>Nothing to show here</h1>
+      <p>Nothing to show here</p>
     </div>
   </div>
 
