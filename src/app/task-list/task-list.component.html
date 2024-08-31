@@ -1,0 +1,20 @@
+<div *ngIf="tasks.length==0; else showItems">
+
+
+    <div *ngIf="tasks.length==0">
+        <p>Nothing to show here</p>
+    </div>
+</div>
+
+<ng-template #showItems>
+    <ul *ngIf="tasks.length !=0" class="todo-list">
+        <li *ngFor="let item of tasks ; index as ii">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" [checked]='item.isComplete' [attr.data-index]="ii" name="" id=""
+                        (click)="toggleItem(item)"> {{item.todoText }}
+                </label>
+            </div>
+        </li>
+    </ul>
+</ng-template>

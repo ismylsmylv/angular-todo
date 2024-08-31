@@ -1,0 +1,10 @@
+<form class="input-group">
+    <div>
+        <input type="text" id="input" placeholder="enter task" name="taskText" class="form-control"
+            [(ngModel)]="newTaskText">
+    </div>
+    <button type="submit" (click)="$event.preventDefault(); addNewTask()" class="btn btn-primary">
+        add
+    </button>
+
+</form>

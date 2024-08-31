@@ -3,6 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { TodoItem } from '../shared/modules/todoItem';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TaskListComponent } from './task-list/task-list.component';
+import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
 
 const filters = [
   (item: TodoItem) => item,
@@ -13,7 +15,13 @@ const filters = [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule],
+  imports: [
+    RouterOutlet,
+    CommonModule,
+    FormsModule,
+    TaskListComponent,
+    AddTaskFormComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -24,17 +32,9 @@ export class AppComponent {
     new TodoItem('Browse Linkedin'),
   ];
   title = 'angular-todo';
-  toggleItem(item: TodoItem) {
-    item.isComplete = !item.isComplete;
-  }
-  addTask() {
-    this.items.push(new TodoItem(this.newTaskText));
-    this.newTaskText = '';
-  }
 
   get visibleItems(): TodoItem[] {
     return this.items.filter(filters[this.listFilter]);
   }
   listFilter: string | any = '0';
-  newTaskText: string = '';
 }
