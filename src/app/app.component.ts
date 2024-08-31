@@ -5,12 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
-
-const filters = [
-  (item: TodoItem) => item,
-  (item: TodoItem) => !item.isComplete,
-  (item: TodoItem) => item.isComplete,
-];
+import { TaskFilterComponent } from './task-filter/task-filter.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +16,7 @@ const filters = [
     FormsModule,
     TaskListComponent,
     AddTaskFormComponent,
+    TaskFilterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -32,9 +28,8 @@ export class AppComponent {
     new TodoItem('Browse Linkedin'),
   ];
   title = 'angular-todo';
-
+  filter: any = () => true;
   get visibleItems(): TodoItem[] {
-    return this.items.filter(filters[this.listFilter]);
+    return this.items.filter(this.filter);
   }
-  listFilter: string | any = '0';
 }
