@@ -3,6 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { TodoItem } from '../shared/modules/todoItem';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+const filters = [
+  (item: TodoItem) => item,
+  (item: TodoItem) => !item.isComplete,
+  (item: TodoItem) => item.isComplete,
+];
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -26,16 +33,8 @@ export class AppComponent {
   }
 
   get visibleItems(): TodoItem[] {
-    let value = this.listFilter;
-    console.log(value);
-    if (value === '0') {
-      return this.items;
-    } else if (value === '1') {
-      return this.items.filter((item) => !item.isComplete);
-    } else {
-      return this.items.filter((item) => item.isComplete);
-    }
+    return this.items.filter(filters[this.listFilter]);
   }
-  listFilter: string = '0';
+  listFilter: string | any = '0';
   newTaskText: string = '';
 }
