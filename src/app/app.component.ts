@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   items: TodoItem[] = [
-    // new TodoItem('To learn Angular'),
-    // new TodoItem('Have a coffee', true),
-    // new TodoItem('Browse Linkedin'),
+    new TodoItem('To learn Angular'),
+    new TodoItem('Have a coffee', true),
+    new TodoItem('Browse Linkedin'),
   ];
   title = 'angular-todo';
   toggleItem(item: TodoItem) {
@@ -24,5 +24,18 @@ export class AppComponent {
     this.items.push(new TodoItem(this.newTaskText));
     this.newTaskText = '';
   }
+
+  get visibleItems(): TodoItem[] {
+    let value = this.listFilter;
+    console.log(value);
+    if (value === '0') {
+      return this.items;
+    } else if (value === '1') {
+      return this.items.filter((item) => !item.isComplete);
+    } else {
+      return this.items.filter((item) => item.isComplete);
+    }
+  }
+  listFilter: string = '0';
   newTaskText: string = '';
 }

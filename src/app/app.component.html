@@ -1,6 +1,6 @@
 <div class="container m-4">
   <!-- input -->
-  <label for="input">{{items.length}} Tasks remaining</label>
+  <label for="input">{{visibleItems.length}} Tasks remaining</label>
   <form class="input-group">
     <div>
       <input type="text" id="input" placeholder="enter task" name="taskText" class="form-control"
@@ -11,20 +11,26 @@
     </button>
 
   </form>
-
+  <div class="row m-4">
+    <select name="" class="form-select" id="" [(ngModel)]="listFilter">
+      <option value="0">All</option>
+      <option value="1">Remaining</option>
+      <option value="2">Completed</option>
+    </select>
+  </div>
 
   <!-- list -->
-  <div *ngIf="items.length==0; else showItems">
+  <div *ngIf="visibleItems.length==0; else showItems">
 
 
-    <div *ngIf="items.length==0">
+    <div *ngIf="visibleItems.length==0">
       <p>Nothing to show here</p>
     </div>
   </div>
 
   <ng-template #showItems>
-    <ul *ngIf="items.length !=0" class="todo-list">
-      <li *ngFor="let item of items ; index as ii">
+    <ul *ngIf="visibleItems.length !=0" class="todo-list">
+      <li *ngFor="let item of visibleItems ; index as ii">
         <div class="form-check">
           <label class="form-check-label">
             <input type="checkbox" [checked]='item.isComplete' [attr.data-index]="ii" name="" id=""
